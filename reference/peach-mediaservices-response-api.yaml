@@ -19,9 +19,807 @@ tags:
   - name: Quality Control
     description: Quality Control
 paths:
+  /qualitycontrol/v1/gateway/response:
+    post:
+      summary: Quality Control MS Gateway Callback
+      operationId: post-qualitycontrol-v1-gateway-response
+      responses:
+        '200':
+          description: OK
+      description: |-
+        Quality Control MSGateway (v3) callback response upon completion of the QC process.
+
+        This is a placeholder endpoint. This will be implemented to break the dependency to APIv1 and the Classic Windows Services.
+      security:
+        - PeachApiKeyAuthentication: []
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: The API Key that identifies the caller
+      tags:
+        - Quality Control
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: object
+                  x-stoplight:
+                    id: 1l2a1ugym012k
+                  properties:
+                    notes:
+                      type: string
+                      x-stoplight:
+                        id: xzu6b6gez26qg
+                    messageId:
+                      type: string
+                      x-stoplight:
+                        id: wpuy1q1uzwzn4
+                    serviceType:
+                      type: string
+                      x-stoplight:
+                        id: n7iotqm9sd045
+                    correlationId:
+                      type: string
+                      x-stoplight:
+                        id: 9pz5ns98en77e
+                    activeMessageStatus:
+                      type: string
+                      x-stoplight:
+                        id: ibxykt7czlgo6
+                body:
+                  type: object
+                  x-stoplight:
+                    id: iv8j1o9gpd5l2
+                  properties:
+                    time:
+                      type: string
+                      x-stoplight:
+                        id: f4if58wpqkgif
+                    result:
+                      type: object
+                      x-stoplight:
+                        id: 4jul3idfoki80
+                      properties:
+                        id:
+                          type: string
+                          x-stoplight:
+                            id: vr9603ro4mn0j
+                        status:
+                          type: string
+                          x-stoplight:
+                            id: n2uyvnloud0q0
+                        category:
+                          type: string
+                          x-stoplight:
+                            id: rss79e0hpeekp
+                        attributes:
+                          type: array
+                          x-stoplight:
+                            id: cm5vtyyltwogq
+                          items:
+                            x-stoplight:
+                              id: 4yad6m9hcos09
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                x-stoplight:
+                                  id: a14ryzgm6gk46
+                              value:
+                                type: string
+                                x-stoplight:
+                                  id: edodk6h3yrw4p
+                              isValid:
+                                type: boolean
+                                x-stoplight:
+                                  id: c0escjj1pymha
+                        returnData:
+                          type: array
+                          x-stoplight:
+                            id: xtp182rfda7lg
+                          items:
+                            x-stoplight:
+                              id: nduwnof6z51os
+                            type: object
+                            properties:
+                              key:
+                                type: string
+                                x-stoplight:
+                                  id: hszx6g0jtgc5s
+                              value:
+                                type: string
+                                x-stoplight:
+                                  id: had63udtwurzy
+            examples:
+              Example 1:
+                value:
+                  Body:
+                    Time: '2023-03-29T17:08:19.1020731+00:00'
+                    Result:
+                      Id: '14684077'
+                      Status: Ok
+                      Category: Supplied
+                      Attributes:
+                        - Name: File_Extension
+                          Value: .mxf
+                          IsValid: null
+                        - Name: File_Length
+                          Value: '381716561'
+                          IsValid: true
+                        - Name: General_FileName
+                          Value: 14684077_SKFLGJW03203082714c55-b9f4-4836-877d-be7d0adc5d8d
+                          IsValid: null
+                        - Name: General_CompleteName
+                          Value: 'D:\ebus.root\FileProcessing\QualityControlJobs\2703208\14684077_SKFLGJW03203082714c55-b9f4-4836-877d-be7d0adc5d8d.mxf'
+                          IsValid: null
+                        - Name: General_Format
+                          Value: MXF
+                          IsValid: true
+                        - Name: General_FormatFamily
+                          Value: ''
+                          IsValid: null
+                        - Name: General_FileSize
+                          Value: '263120992'
+                          IsValid: null
+                        - Name: General_PlayTime
+                          Value: '40000'
+                          IsValid: null
+                        - Name: General_BitRate
+                          Value: '52624198'
+                          IsValid: null
+                        - Name: General_FormatCommercialIfAny
+                          Value: XDCAM HD422
+                          IsValid: null
+                        - Name: General_FormatProfile
+                          Value: OP-1a
+                          IsValid: null
+                        - Name: General_EncodedLibrary
+                          Value: ''
+                          IsValid: null
+                        - Name: General_OverallBitRate
+                          Value: '52624198'
+                          IsValid: true
+                        - Name: Video_Codecstring
+                          Value: ''
+                          IsValid: null
+                        - Name: Video_PlayTime
+                          Value: '30000'
+                          IsValid: null
+                        - Name: Video_BitRate
+                          Value: '50000000'
+                          IsValid: true
+                        - Name: Video_MaximumBitRate
+                          Value: ''
+                          IsValid: null
+                        - Name: General_CodecID
+                          Value: ''
+                          IsValid: null
+                        - Name: Video_CodecID
+                          Value: 0D01030102046001-0401020201040300
+                          IsValid: null
+                        - Name: Video_Width_Original
+                          Value: '1920'
+                          IsValid: null
+                        - Name: Video_Height_Original
+                          Value: ''
+                          IsValid: null
+                        - Name: Video_Format_Settings_Wrapping
+                          Value: Frame
+                          IsValid: null
+                        - Name: Audio_Format_Settings_Wrapping
+                          Value: Frame (AES)
+                          IsValid: null
+                        - Name: Video_BitRateMode
+                          Value: CBR
+                          IsValid: true
+                        - Name: Video_Width
+                          Value: '1920'
+                          IsValid: true
+                        - Name: Video_Height
+                          Value: '1080'
+                          IsValid: true
+                        - Name: Video_AspectRatio
+                          Value: '1.778'
+                          IsValid: null
+                        - Name: Video_FrameRate
+                          Value: '25.000'
+                          IsValid: true
+                        - Name: Video_Standard
+                          Value: PAL
+                          IsValid: null
+                        - Name: Video_Chroma
+                          Value: '4:2:2'
+                          IsValid: true
+                        - Name: Video_Interlacement
+                          Value: TFF
+                          IsValid: true
+                        - Name: Video_FrameCount
+                          Value: '750'
+                          IsValid: true
+                        - Name: Video_DisplayAspectRatio
+                          Value: '1.778'
+                          IsValid: true
+                        - Name: Video_Format
+                          Value: MPEG Video
+                          IsValid: true
+                        - Name: Video_FormatVersion
+                          Value: Version 2
+                          IsValid: null
+                        - Name: Video_FormatSettingsMatrix
+                          Value: Default
+                          IsValid: null
+                        - Name: Video_BitRateNominal
+                          Value: ''
+                          IsValid: null
+                        - Name: Video_Colorimetry
+                          Value: BT.709
+                          IsValid: null
+                        - Name: Video_ScanType
+                          Value: Interlaced
+                          IsValid: true
+                        - Name: Video_ScanOrder
+                          Value: TFF
+                          IsValid: true
+                        - Name: Video_FormatCommercialIfAny
+                          Value: XDCAM HD422
+                          IsValid: true
+                        - Name: Video_FormatSettingsGOP
+                          Value: 'M=3, N=12'
+                          IsValid: null
+                        - Name: Video_ChromaSubsampling
+                          Value: '4:2:2'
+                          IsValid: true
+                        - Name: Audio_FormatVersion
+                          Value: ''
+                          IsValid: null
+                        - Name: Audio_FormatProfile
+                          Value: ''
+                          IsValid: null
+                        - Name: Audio_Format
+                          Value: PCM
+                          IsValid: true
+                        - Name: Audio_BitDepth
+                          Value: '24'
+                          IsValid: true
+                        - Name: Audio_ChannelsPerStream
+                          Value: '1'
+                          IsValid: null
+                        - Name: Audio_AudioStreams
+                          Value: '2'
+                          IsValid: true
+                        - Name: Audio_Codecstring
+                          Value: ''
+                          IsValid: null
+                        - Name: Audio_PlayTime
+                          Value: '30000'
+                          IsValid: null
+                        - Name: Audio_BitRate
+                          Value: '1152000'
+                          IsValid: null
+                        - Name: Audio_BitRateMode
+                          Value: CBR
+                          IsValid: null
+                        - Name: Audio_Channels
+                          Value: '2'
+                          IsValid: true
+                        - Name: Audio_SamplingRate
+                          Value: '48000'
+                          IsValid: true
+                        - Name: Audio_Resolution
+                          Value: '24'
+                          IsValid: true
+                        - Name: Audio_FrameCount
+                          Value: '1000'
+                          IsValid: null
+                        - Name: VideoEssence_WhiteOverlevelOver10Frames
+                          Value: null
+                          IsValid: null
+                        - Name: VideoEssence_WhiteOverlevelOverAll
+                          Value: null
+                          IsValid: null
+                        - Name: VideoEssence_BlackUnderlevelOver10Frames
+                          Value: null
+                          IsValid: null
+                        - Name: VideoEssence_BlackUnderlevelOverAll
+                          Value: null
+                          IsValid: null
+                        - Name: VideoEssence_MaximumNumberofconsecutiveblackframes
+                          Value: null
+                          IsValid: null
+                        - Name: VideoEssence_Totalnumberofblackframes
+                          Value: null
+                          IsValid: null
+                        - Name: VideoEssence_HeadBlackFrames
+                          Value: null
+                          IsValid: null
+                        - Name: VideoEssence_TailBlackFrames
+                          Value: null
+                          IsValid: null
+                        - Name: VideoEssence_Maximumnumberofconsecutivesimilarframes
+                          Value: null
+                          IsValid: null
+                        - Name: VideoEssence_AverageWhiteOverLevel
+                          Value: null
+                          IsValid: null
+                        - Name: VideoEssence_AverageBlackUnderLevel
+                          Value: null
+                          IsValid: null
+                        - Name: AudioEssence_MaximumAudioPeak1
+                          Value: '-9.7'
+                          IsValid: null
+                        - Name: AudioEssence_MaximumAudioPeak2
+                          Value: '-9.5'
+                          IsValid: null
+                        - Name: AudioEssence_MaximumAudioPeak3
+                          Value: null
+                          IsValid: null
+                        - Name: AudioEssence_MaximumAudioPeak4
+                          Value: null
+                          IsValid: null
+                        - Name: AudioEssence_MaximumAudioPeak5
+                          Value: null
+                          IsValid: null
+                        - Name: AudioEssence_MaximumAudioPeak6
+                          Value: null
+                          IsValid: null
+                        - Name: AudioEssence_MaximumAudioPeak7
+                          Value: null
+                          IsValid: null
+                        - Name: AudioEssence_MaximumAudioPeak8
+                          Value: null
+                          IsValid: null
+                        - Name: AudioEssence_AudioLoudness
+                          Value: '-23'
+                          IsValid: true
+                        - Name: AudioEssence_FirstTwelveFramesMute
+                          Value: 'False'
+                          IsValid: null
+                        - Name: AudioEssence_LastTwelveFramesMute
+                          Value: 'False'
+                          IsValid: null
+                        - Name: AudioEssence_FirstFramesMute
+                          Value: '8'
+                          IsValid: true
+                        - Name: AudioEssence_LastFramesMute
+                          Value: '8'
+                          IsValid: true
+                        - Name: AudioEssence_TrueMaximumAudioPeak1
+                          Value: '-9.7'
+                          IsValid: true
+                        - Name: AudioEssence_TrueMaximumAudioPeak2
+                          Value: '-9.4'
+                          IsValid: true
+                        - Name: AudioEssence_TrueMaximumAudioPeak3
+                          Value: null
+                          IsValid: true
+                        - Name: AudioEssence_TrueMaximumAudioPeak4
+                          Value: null
+                          IsValid: true
+                        - Name: AudioEssence_TrueMaximumAudioPeak5
+                          Value: null
+                          IsValid: true
+                        - Name: AudioEssence_TrueMaximumAudioPeak6
+                          Value: null
+                          IsValid: true
+                        - Name: AudioEssence_TrueMaximumAudioPeak7
+                          Value: null
+                          IsValid: true
+                        - Name: AudioEssence_TrueMaximumAudioPeak8
+                          Value: null
+                          IsValid: true
+                        - Name: File_SHA256_CheckSum
+                          Value: D71042B597BF99B97491298C0D16701563674AA9B1A9B1182A4805435D70E8EC
+                          IsValid: null
+                        - Name: File_SHA1_CheckSum
+                          Value: 26925D2D16958557C6B3D17F23299B783226FF29
+                          IsValid: null
+                        - Name: AudioEssence_AveragePhaseNumber
+                          Value: '61.644'
+                          IsValid: null
+                        - Name: AudioEssence_SumMSNumber
+                          Value: '8892923'
+                          IsValid: null
+                        - Name: AudioEssence_AudioIsMono
+                          Value: 'True'
+                          IsValid: null
+                        - Name: AudioEssence_ChannelsMissing
+                          Value: 'True'
+                          IsValid: null
+                        - Name: AudioEssence_OverallLoudness
+                          Value: null
+                          IsValid: null
+                        - Name: AudioEssence_LoudnessRange
+                          Value: null
+                          IsValid: null
+                        - Name: AudioEssence_MaximumMomentaryLoudness
+                          Value: null
+                          IsValid: null
+                        - Name: AudioEssence_ShortTermLoudness
+                          Value: null
+                          IsValid: null
+                        - Name: VideoEssence_InverseFields_AllStill
+                          Value: 'False'
+                          IsValid: null
+                        - Name: VideoEssence_InverseFields_AllProgressive
+                          Value: 'True'
+                          IsValid: null
+                        - Name: VideoEssence_InverseFields_InterlacedTFF
+                          Value: 'False'
+                          IsValid: null
+                        - Name: VideoEssence_InverseFields_InterlacedBFF
+                          Value: 'False'
+                          IsValid: null
+                        - Name: Runtime_Notes
+                          Value: ''
+                          IsValid: true
+                        - Name: Runtime_AdvanceQCVersion
+                          Value: '3'
+                          IsValid: true
+                        - Name: AudioTool_Audio_BitDepth
+                          Value: '16'
+                          IsValid: null
+                        - Name: AudioTool_Audio_PlayTime
+                          Value: '30000'
+                          IsValid: null
+                        - Name: AudioTool_Audio_SamplingRate
+                          Value: '48000'
+                          IsValid: null
+                        - Name: AudioTool_Audio_Channels
+                          Value: '2'
+                          IsValid: null
+                        - Name: AudioTool_Audio_IsOutOfPhase
+                          Value: 'False'
+                          IsValid: null
+                        - Name: AudioTool_Audio_HasSilentAudioTracks
+                          Value: 'False'
+                          IsValid: null
+                        - Name: AudioTool_Audio_HasMonoAudioTracks
+                          Value: 'False'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_PPMAudio1
+                          Value: '-13'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_PPMAudio2
+                          Value: '-12.5'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_PPMAudio3
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_PPMAudio4
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_PPMAudio5
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_PPMAudio6
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_PPMAudio7
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_PPMAudio8
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128Integrated1
+                          Value: '-23'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128Integrated2
+                          Value: '-23'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128Integrated3
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128Integrated4
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128Integrated5
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128Integrated6
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128Integrated7
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128Integrated8
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128ShortTerm1
+                          Value: '-21.6'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128ShortTerm2
+                          Value: '-21.6'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128ShortTerm3
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128ShortTerm4
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128ShortTerm5
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128ShortTerm6
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128ShortTerm7
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128ShortTerm8
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128LRA1
+                          Value: '3.8'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128LRA2
+                          Value: '3.8'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128LRA3
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128LRA4
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128LRA5
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128LRA6
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128LRA7
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_R128LRA8
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_MaximumAudioPeak1
+                          Value: '-9.7'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_MaximumAudioPeak2
+                          Value: '-9.4'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_MaximumAudioPeak3
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_MaximumAudioPeak4
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_MaximumAudioPeak5
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_MaximumAudioPeak6
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_MaximumAudioPeak7
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_MaximumAudioPeak8
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_TrueMaximumAudioPeak1
+                          Value: '-9.7'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_TrueMaximumAudioPeak2
+                          Value: '-9.4'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_TrueMaximumAudioPeak3
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_TrueMaximumAudioPeak4
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_TrueMaximumAudioPeak5
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_TrueMaximumAudioPeak6
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_TrueMaximumAudioPeak7
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_TrueMaximumAudioPeak8
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_LM1001
+                          Value: '-23.1'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_LM1002
+                          Value: '-23.1'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_LM1003
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_LM1004
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_LM1005
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_LM1006
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_LM1007
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_LM1008
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_SD41
+                          Value: '4.4'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_SD42
+                          Value: '4.4'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_SD43
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_SD44
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_SD45
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_SD46
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_SD47
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_SD48
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_VU1
+                          Value: '-2.5'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_VU2
+                          Value: '-2.7'
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_VU3
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_VU4
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_VU5
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_VU6
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_VU7
+                          Value: null
+                          IsValid: null
+                        - Name: AudioTool_AudioEssence_VU8
+                          Value: null
+                          IsValid: null
+                        - Name: Video_HeaderValid
+                          Value: 'True'
+                          IsValid: true
+                        - Name: Video_TailValid
+                          Value: 'True'
+                          IsValid: true
+                        - Name: Video_LayoutDuration
+                          Value: '250'
+                          IsValid: true
+                        - Name: Video_ClockSlateMatch
+                          Value: SKF/LGJW032/030
+                          IsValid: true
+                        - Name: Format_Company_Name
+                          Value: 'Avid Technology, Inc.'
+                          IsValid: null
+                        - Name: Format_Product_Name
+                          Value: Avid MediaProcessor Plug-In
+                          IsValid: null
+                        - Name: Format_Product_Version_Num
+                          Value: 1.0.60.10070.1
+                          IsValid: null
+                        - Name: Format_Product_Version
+                          Value: 1.0.60.10070.1
+                          IsValid: null
+                        - Name: Format_Application_Platform
+                          Value: MXF
+                          IsValid: null
+                        - Name: Format_Toolkit_Version_Num
+                          Value: 4.7.14.10177.1
+                          IsValid: null
+                        - Name: VideoEssence_RedHighGamutFailure
+                          Value: '1'
+                          IsValid: true
+                        - Name: VideoEssence_RedHighGamutFailureFrames
+                          Value: ''
+                          IsValid: null
+                        - Name: VideoEssence_RedLowGamutFailure
+                          Value: '0'
+                          IsValid: true
+                        - Name: VideoEssence_RedLowGamutFailureFrames
+                          Value: ''
+                          IsValid: null
+                        - Name: VideoEssence_RedMaxPeak
+                          Value: '240'
+                          IsValid: null
+                        - Name: VideoEssence_RedMin
+                          Value: '12'
+                          IsValid: null
+                        - Name: VideoEssence_GreenHighGamutFailure
+                          Value: '0'
+                          IsValid: true
+                        - Name: VideoEssence_GreenHighGamutFailureFrames
+                          Value: ''
+                          IsValid: null
+                        - Name: VideoEssence_GreenLowGamutFailure
+                          Value: '0'
+                          IsValid: true
+                        - Name: VideoEssence_GreenLowGamutFailureFrames
+                          Value: ''
+                          IsValid: null
+                        - Name: VideoEssence_GreenMaxPeak
+                          Value: '236'
+                          IsValid: null
+                        - Name: VideoEssence_GreenMin
+                          Value: '15'
+                          IsValid: null
+                        - Name: VideoEssence_BlueHighGamutFailure
+                          Value: '0'
+                          IsValid: true
+                        - Name: VideoEssence_BlueHighGamutFailureFrames
+                          Value: ''
+                          IsValid: null
+                        - Name: VideoEssence_BlueLowGamutFailure
+                          Value: '-1'
+                          IsValid: true
+                        - Name: VideoEssence_BlueLowGamutFailureFrames
+                          Value: ''
+                          IsValid: null
+                        - Name: VideoEssence_BlueMaxPeak
+                          Value: '236'
+                          IsValid: null
+                        - Name: VideoEssence_BlueMin
+                          Value: '10'
+                          IsValid: null
+                        - Name: VideoEssence_LumaHighGamutFailure
+                          Value: '0'
+                          IsValid: true
+                        - Name: VideoEssence_LumaHighGamutFailureFrames
+                          Value: ''
+                          IsValid: null
+                        - Name: VideoEssence_LumaLowGamutFailure
+                          Value: '0'
+                          IsValid: true
+                        - Name: VideoEssence_LumaLowGamutFailureFrames
+                          Value: ''
+                          IsValid: null
+                        - Name: VideoEssence_LumaMaxPeak
+                          Value: '235'
+                          IsValid: null
+                        - Name: VideoEssence_LumaMin
+                          Value: '16'
+                          IsValid: null
+                      ReturnData:
+                        - Key: QCFormatId
+                          Value: '316'
+                        - Key: QCCorrelationId
+                          Value: 14684077_SKFLGJW03203082714c55-b9f4-4836-877d-be7d0adc5d8d.mxf
+                        - Key: QcWorkflowVersion
+                          Value: v2
+                        - Key: TraceId
+                          Value: 1722b25e-eb7e-45e4-934e-25999ded382b
+                        - Key: Token
+                          Value: AQB0AAAAKgAAAAMAAAAAAAAAAezaJ
+                  Metadata:
+                    notes: Completed
+                    messageId: '19812017'
+                    "0\t\t\"serviceType\"": Quality Control
+                    correlationId: 14684077_SKFLGJW03203082714c55-b9f4-4836-877d-be7d0adc5d8d.mxf
+                    activeMessageStatus: Completed
+        description: The callback message from the MSGateway quality control job
   /qualitycontrol/v1/response:
     post:
-      summary: Quality Control Callback
+      summary: Quality Control v4 Callback
       operationId: post-qc
       responses:
         '200':
@@ -71,7 +869,7 @@ paths:
                 Example 1:
                   value:
                     message: User is not authorized to access this resource
-      description: Quality Control callback response from the Media Server upon completion of the QC process.
+      description: Quality Control v4 callback response from the Media Server upon completion of the QC process.
       security:
         - PeachApiKeyAuthentication: []
       parameters:
