@@ -2,7 +2,7 @@ openapi: 3.1.0
 x-stoplight:
   id: fi76hex04rsdu
 info:
-  title: Peach Mediaservices Response API
+  title: Peach Media Services Response API
   version: '1.0'
   summary: API endpoints for the Mediaservices response to Peach
   description: 'A collection of API endpoints that handles the quality control, transcode and distribution rresponses from the Media Servers back to Peach.'
@@ -10,191 +10,129 @@ info:
     name: API Support
     url: 'https://api.peachvideo.com/support'
     email: partnerapi.support@peachvideo.com
+  license:
+    name: MIT 2.0
 servers:
   - url: 'http://db-mediaservices-response-api.imdcloud.net'
 paths:
-  '/users/{userId}':
-    parameters:
-      - schema:
-          type: integer
-        name: userId
-        in: path
-        required: true
-        description: Id of an existing user.
-    get:
-      summary: Get User Info by User ID
-      tags: []
-      responses:
-        '200':
-          description: User Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                Get User Alice Smith:
-                  value:
-                    id: 142
-                    firstName: Alice
-                    lastName: Smith
-                    email: alice.smith@gmail.com
-                    dateOfBirth: '1997-10-31'
-                    emailVerified: true
-                    signUpDate: '2019-08-24'
-        '404':
-          description: User Not Found
-      operationId: get-users-userId
-      description: Retrieve the information of the user with the matching user ID.
-    patch:
-      summary: Update User Information
-      operationId: patch-users-userId
-      responses:
-        '200':
-          description: User Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                Updated User Rebecca Baker:
-                  value:
-                    id: 13
-                    firstName: Rebecca
-                    lastName: Baker
-                    email: rebecca@gmail.com
-                    dateOfBirth: '1985-10-02'
-                    emailVerified: false
-                    createDate: '2019-08-24'
-        '404':
-          description: User Not Found
-        '409':
-          description: Email Already Taken
-      description: Update the information of an existing user.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                  description: 'If a new email is given, the user''s email verified property will be set to false.'
-                dateOfBirth:
-                  type: string
-            examples:
-              Update First Name:
-                value:
-                  firstName: Rebecca
-              Update Email:
-                value:
-                  email: rebecca@gmail.com
-              Update Last Name & Date of Birth:
-                value:
-                  lastName: Baker
-                  dateOfBirth: '1985-10-02'
-        description: Patch user properties to update.
-  /user:
+  /qualitycontrol/v1/response:
     post:
-      summary: Create New User
-      operationId: post-user
+      summary: Quality Control Callback
+      operationId: post-qc
       responses:
         '200':
-          description: User Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                New User Bob Fellow:
-                  value:
-                    id: 12
-                    firstName: Bob
-                    lastName: Fellow
-                    email: bob.fellow@gmail.com
-                    dateOfBirth: '1996-08-24'
-                    emailVerified: false
-                    createDate: '2020-11-18'
+          description: OK
         '400':
-          description: Missing Required Information
-        '409':
-          description: Email Already Taken
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      description: Quality Control callback response from the Media Server upon completion of the QC process.
+      security:
+        - PeachApiKeyAuthentication: []
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: traceId
+          description: The TraceIdentifier coming from the workflow.
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+          description: The API Key that identifies the caller
       requestBody:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                firstName:
-                  type: string
-                lastName:
-                  type: string
-                email:
-                  type: string
-                dateOfBirth:
-                  type: string
-                  format: date
-              required:
-                - firstName
-                - lastName
-                - email
-                - dateOfBirth
+              $ref: '#/components/schemas/QualityControl'
             examples:
-              Create User Bob Fellow:
+              Successful QC Response:
                 value:
-                  firstName: Bob
-                  lastName: Fellow
-                  email: bob.fellow@gmail.com
-                  dateOfBirth: '1996-08-24'
-        description: Post the necessary fields for the API to create a new user.
-      description: Create a new user.
+                  metadata:
+                    correlationId: a5e5f64f-53b3-4505-8767-c318c52732c2
+                    status: Completed
+                    note: QC_InternalWorkflow
+                    serviceType: Quality Control
+                  body:
+                    result: '{"status":"Accepted","reportUrl":"https://db-mediaservices-api.imdcloud.net/qualitycontrol/v1/a5e5f64f-53b3-4505-8767-c318c52732c2/report","statusUrl":"https://db-mediaservices-api.imdcloud.net/qualitycontrol/v1/a5e5f64f-53b3-4505-8767-c318c52732c2/status"}'
+              Failed QC Response:
+                value:
+                  metadata:
+                    correlationId: a5e5f64f-53b3-4505-8767-c318c52732c2
+                    status: Completed
+                    note: QC_InternalWorkflow
+                    serviceType: Quality Control
+                  body:
+                    result: '{"status":"Failed","reportUrl":"https://db-mediaservices-api.imdcloud.net/qualitycontrol/v1/a5e5f64f-53b3-4505-8767-c318c52732c2/report","statusUrl":"https://db-mediaservices-api.imdcloud.net/qualitycontrol/v1/a5e5f64f-53b3-4505-8767-c318c52732c2/status"}'
+    parameters: []
 components:
   schemas:
-    User:
-      title: User
-      type: object
-      description: ''
-      examples:
-        - id: 142
-          firstName: Alice
-          lastName: Smith
-          email: alice.smith@gmail.com
-          dateOfBirth: '1997-10-31'
-          emailVerified: true
-          signUpDate: '2019-08-24'
-      properties:
-        id:
-          type: integer
-          description: Unique identifier for the given user.
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-          format: email
-        dateOfBirth:
-          type: string
-          format: date
-          example: '1997-10-31'
-        emailVerified:
-          type: boolean
-          description: Set to true if the user's email has been verified.
-        createDate:
-          type: string
-          format: date
-          description: The date that the user was created.
-      required:
-        - id
-        - firstName
-        - lastName
-        - email
-        - emailVerified
+    Metadata:
+      title: Metadata
       x-stoplight:
-        id: q2fms5vcov0by
+        id: htdp9b81sizhh
+      type: object
+      properties:
+        correlationId:
+          type: string
+          x-stoplight:
+            id: fpjgte0y8wt21
+          description: 'This is a unique reference to the resource. If this is a QC response, this will be the SubmissionId.'
+        status:
+          type: string
+          x-stoplight:
+            id: na2emk7xfu4h5
+          description: 'Completed, InProgress, etc ...'
+        note:
+          type: string
+          x-stoplight:
+            id: 8k3w1dzbu6skn
+          description: Additional information from the caller. This usually contains the type of service being returned.
+        serviceType:
+          type: string
+          x-stoplight:
+            id: 4mvvisjkzc9he
+          description: 'Quality Control, Transcode or Distribution'
+      description: The metadata detail included at the top of all response payloads
+      examples:
+        - correlationId: a5e5f64f-53b3-4505-8767-c318c52732c2
+          status: Completed
+          note: QC_InternalWorkflow
+          serviceType: Quality Control
+    QualityControl:
+      title: QualityControl
+      x-stoplight:
+        id: 5sfc5j1k45syi
+      type: object
+      examples:
+        - metadata:
+            correlationId: a5e5f64f-53b3-4505-8767-c318c52732c2
+            status: Completed
+            note: QC_InternalWorkflow
+            serviceType: Quality Control
+          body:
+            result: '{"status":"Accepted","reportUrl":"https://db-mediaservices-api.imdcloud.net/qualitycontrol/v1/a5e5f64f-53b3-4505-8767-c318c52732c2/report","statusUrl":"https://db-mediaservices-api.imdcloud.net/qualitycontrol/v1/a5e5f64f-53b3-4505-8767-c318c52732c2/status"}'
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+          x-stoplight:
+            id: 1yghwy0gazlid
+        body:
+          type: object
+          x-stoplight:
+            id: 9cyv09kllceyy
+          required:
+            - result
+          properties:
+            result:
+              type: string
+              x-stoplight:
+                id: 3y6bd8dbnhslj
+              description: This contains a JSON encoded string containing the report url and the status url of the QC Submission.
+      required:
+        - body
   securitySchemes:
     PeachApiKeyAuthentication:
       name: Authorization
