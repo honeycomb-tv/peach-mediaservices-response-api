@@ -148,6 +148,9 @@ components:
           status: Completed
           note: QC_InternalWorkflow
           serviceType: Quality Control
+      x-tags:
+        - Models
+        - Common
     QualityControl:
       title: QualityControl
       x-stoplight:
@@ -181,6 +184,7 @@ components:
       required:
         - body
       x-tags:
+        - Models
         - Quality Control
   securitySchemes:
     PeachApiKeyAuthentication:
