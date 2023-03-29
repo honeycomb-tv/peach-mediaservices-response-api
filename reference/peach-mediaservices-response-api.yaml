@@ -66,6 +66,8 @@ paths:
                     serviceType: Quality Control
                   body:
                     result: '{"status":"Failed","reportUrl":"https://db-mediaservices-api.imdcloud.net/qualitycontrol/v1/a5e5f64f-53b3-4505-8767-c318c52732c2/report","statusUrl":"https://db-mediaservices-api.imdcloud.net/qualitycontrol/v1/a5e5f64f-53b3-4505-8767-c318c52732c2/status"}'
+      tags:
+        - QualityControl
     parameters: []
 components:
   schemas:
