@@ -150,7 +150,6 @@ components:
           serviceType: Quality Control
       x-tags:
         - Models
-        - Common
     QualityControl:
       title: QualityControl
       x-stoplight:
@@ -185,7 +184,6 @@ components:
         - body
       x-tags:
         - Models
-        - Quality Control
   securitySchemes:
     PeachApiKeyAuthentication:
       name: Authorization
