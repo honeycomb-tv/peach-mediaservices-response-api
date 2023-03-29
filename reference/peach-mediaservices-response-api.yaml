@@ -813,7 +813,7 @@ paths:
                   Metadata:
                     notes: Completed
                     messageId: '19812017'
-                    "0\t\t\"serviceType\"": Quality Control
+                    serviceType: Quality Control
                     correlationId: 14684077_SKFLGJW03203082714c55-b9f4-4836-877d-be7d0adc5d8d.mxf
                     activeMessageStatus: Completed
         description: The callback message from the MSGateway quality control job
