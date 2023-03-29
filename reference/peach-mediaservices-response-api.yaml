@@ -961,6 +961,8 @@ components:
             serviceType: Quality Control
           body:
             result: '{"status":"Accepted","reportUrl":"https://db-mediaservices-api.imdcloud.net/qualitycontrol/v1/a5e5f64f-53b3-4505-8767-c318c52732c2/report","statusUrl":"https://db-mediaservices-api.imdcloud.net/qualitycontrol/v1/a5e5f64f-53b3-4505-8767-c318c52732c2/status"}'
+      x-tags:
+        - Models
       properties:
         metadata:
           $ref: '#/components/schemas/Metadata'
@@ -977,11 +979,9 @@ components:
               type: string
               x-stoplight:
                 id: 3y6bd8dbnhslj
-              description: This contains a JSON encoded string containing the report url and the status url of the QC Submission.
+              description: This is a JSON-encoded string containing the report url and the status url of the QC Submission.
       required:
         - body
-      x-tags:
-        - Models
   securitySchemes:
     PeachApiKeyAuthentication:
       name: Authorization
