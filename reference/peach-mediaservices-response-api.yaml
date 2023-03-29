@@ -11,9 +11,13 @@ info:
     url: 'https://api.peachvideo.com/support'
     email: partnerapi.support@peachvideo.com
   license:
-    name: MIT 2.0
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
 servers:
   - url: 'http://db-mediaservices-response-api.imdcloud.net'
+tags:
+  - name: Quality Control
+    description: Quality Control
 paths:
   /qualitycontrol/v1/response:
     post:
@@ -24,8 +28,49 @@ paths:
           description: OK
         '400':
           description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-stoplight:
+                      id: rjfzo39zvdtbv
+              examples:
+                Example 1:
+                  value:
+                    message: 'Missing required parameters: [result]'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-stoplight:
+                      id: 38rmz9g35s56k
+              examples:
+                Example 1:
+                  value:
+                    message: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-stoplight:
+                      id: edo5dl1lne034
+              examples:
+                Example 1:
+                  value:
+                    message: User is not authorized to access this resource
       description: Quality Control callback response from the Media Server upon completion of the QC process.
       security:
         - PeachApiKeyAuthentication: []
@@ -67,7 +112,7 @@ paths:
                   body:
                     result: '{"status":"Failed","reportUrl":"https://db-mediaservices-api.imdcloud.net/qualitycontrol/v1/a5e5f64f-53b3-4505-8767-c318c52732c2/report","statusUrl":"https://db-mediaservices-api.imdcloud.net/qualitycontrol/v1/a5e5f64f-53b3-4505-8767-c318c52732c2/status"}'
       tags:
-        - QualityControl
+        - Quality Control
     parameters: []
 components:
   schemas:
@@ -135,6 +180,8 @@ components:
               description: This contains a JSON encoded string containing the report url and the status url of the QC Submission.
       required:
         - body
+      x-tags:
+        - Quality Control
   securitySchemes:
     PeachApiKeyAuthentication:
       name: Authorization
